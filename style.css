@@ -97,3 +97,18 @@ footer {
   color: #555;
   line-height: 1.5;
 }
+
+.cerita-card h2 {
+  color: #ff6f91;
+  margin-bottom: 10px;
+}
+
+.cerita-card p {
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.cerita-card img {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}

@@ -3,12 +3,13 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10
 
 // 🔥 konfigurasi firebase (sama seperti di script.js)
 const firebaseConfig = {
-  apiKey: "ISI_PUNYAMU",
-  authDomain: "ISI_PUNYAMU",
-  projectId: "ISI_PUNYAMU",
-  storageBucket: "ISI_PUNYAMU",
-  messagingSenderId: "ISI_PUNYAMU",
-  appId: "ISI_PUNYAMU"
+  apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuYw0Hg",
+  authDomain: "ceritakita-22.firebaseapp.com",
+  databaseURL: "https://ceritakita-22-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "ceritakita-22",
+  storageBucket: "ceritakita-22.firebasestorage.app",
+  messagingSenderId: "952342930337",
+  appId: "1:952342930337:web:bcdccbb012a5a4f4aa61e0"
 };
 
 const app = initializeApp(firebaseConfig);

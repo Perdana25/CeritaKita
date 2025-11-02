@@ -2,13 +2,19 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // 🔥 konfigurasi firebase
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "ISI_PUNYAMU",
-  authDomain: "ISI_PUNYAMU",
-  projectId: "ISI_PUNYAMU",
-  storageBucket: "ISI_PUNYAMU",
-  messagingSenderId: "ISI_PUNYAMU",
-  appId: "ISI_PUNYAMU"
+  apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuYw0Hg",
+  authDomain: "ceritakita-22.firebaseapp.com",
+  projectId: "ceritakita-22",
+  storageBucket: "ceritakita-22.firebasestorage.app",
+  messagingSenderId: "952342930337",
+  appId: "1:952342930337:web:bcdccbb012a5a4f4aa61e0"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -38,3 +44,4 @@ window.lihatDetail = function (id) {
   localStorage.setItem("ceritaId", id);
   window.location.href = "detail.html";
 };
+

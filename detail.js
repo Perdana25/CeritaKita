@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// 🔥 konfigurasi firebase (sama seperti di script.js)
+// 🔥 konfigurasi firebase (sama persis dengan script.js)
 const firebaseConfig = {
   apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuYw0Hg",
   authDomain: "ceritakita-22.firebaseapp.com",
@@ -13,9 +13,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
-const ceritaId = localStorage.getItem("ceritaId");
+// Ambil ID cerita dari URL (misal: detail.html?id=cerita1)
+const params = new URLSearchParams(window.location.search);
+const ceritaId = params.get("id");
+
 const ceritaDetail = document.getElementById("cerita-detail");
 
 async function tampilkanDetail() {
@@ -24,20 +27,22 @@ async function tampilkanDetail() {
     return;
   }
 
-  const docRef = doc(db, "cerita", ceritaId);
-  const docSnap = await getDoc(docRef);
+  const ceritaRef = ref(db, `Cerita/${ceritaId}`);
+  const snapshot = await get(ceritaRef);
 
-  if (docSnap.exists()) {
-    const data = docSnap.data();
+  if (snapshot.exists()) {
+    const data = snapshot.val();
     ceritaDetail.innerHTML = `
       <div class="cerita-card">
-        <h2>${data.judul}</h2>
-        <p>${data.isi}</p>
-        <small>${data.tanggal || ""}</small>
+        <h2>${data.Judul}</h2>
+        <p>${data.Isi}</p>
+        <small>${data.Tanggal || ""}</small><br>
+        <img src="${data.Foto}" alt="foto cerita" style="width:100%;border-radius:10px;margin-top:8px;">
       </div>
     `;
   } else {
     ceritaDetail.innerHTML = "<p>Cerita tidak ditemukan di database.</p>";
   }
 }
+
 tampilkanDetail();

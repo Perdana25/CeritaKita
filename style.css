@@ -1,111 +1,69 @@
-/* === Reset & Font === */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #fff6f7;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff5f7;
   color: #333;
-  line-height: 1.6;
 }
 
-/* === Header === */
 header {
   text-align: center;
-  background: linear-gradient(to bottom right, #ffb6c1, #ffc2c2);
-  color: white;
-  padding: 50px 20px;
-  border-radius: 0 0 30px 30px;
-  box-shadow: 0 4px 10px rgba(255, 182, 193, 0.4);
+  background-color: #ffb6c1;
+  padding: 40px 20px;
+  border-radius: 0 0 40px 40px;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: white;
 }
 
 header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-top: 10px;
+  color: #fff;
+  font-weight: 300;
 }
 
-/* === Cerita Container === */
 .cerita-list {
-  max-width: 900px;
-  margin: 40px auto;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  padding: 0 20px;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* === Card Cerita === */
 .cerita-card {
-  background-color: #fff;
+  background: white;
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .cerita-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: scale(1.02);
 }
 
-.cerita-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.cerita-content {
+.detail-container {
+  max-width: 800px;
+  margin: 30px auto;
   padding: 20px;
 }
 
-.cerita-content h2 {
-  color: #ff6384;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+.back-btn {
+  background-color: #ffb6c1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.cerita-content p {
-  margin-bottom: 8px;
-  color: #555;
-}
-
-.cerita-content small {
-  display: block;
-  color: #999;
-  font-size: 0.9rem;
-}
-
-/* === Footer === */
 footer {
   text-align: center;
-  padding: 30px 20px;
-  color: #888;
+  padding: 20px;
+  color: #777;
   font-size: 0.9rem;
-}
-
-footer span {
-  color: #ff6384;
-}
-
-/* === Responsif === */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  .cerita-content h2 {
-    font-size: 1.1rem;
-  }
 }

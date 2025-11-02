@@ -1,47 +1,52 @@
+// Import Firebase Realtime Database SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // 🔥 konfigurasi firebase
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuYw0Hg",
   authDomain: "ceritakita-22.firebaseapp.com",
+  databaseURL: "https://ceritakita-22-default-rtdb.asia-southeast1.firebasedatabase.app/",
   projectId: "ceritakita-22",
   storageBucket: "ceritakita-22.firebasestorage.app",
   messagingSenderId: "952342930337",
   appId: "1:952342930337:web:bcdccbb012a5a4f4aa61e0"
 };
 
+// 🔹 Inisialisasi
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
-// tampilkan daftar cerita
+// 🔹 Ambil data realtime dari node "Cerita"
 const ceritaContainer = document.getElementById("cerita-container");
-async function tampilkanCerita() {
-  const querySnapshot = await getDocs(collection(db, "cerita"));
+const ceritaRef = ref(db, "Cerita");
+
+onValue(ceritaRef, (snapshot) => {
   ceritaContainer.innerHTML = "";
+  const data = snapshot.val();
 
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    ceritaContainer.innerHTML += `
-      <div class="cerita-card" onclick="lihatDetail('${doc.id}')">
-        <h3>${data.judul}</h3>
-        <p>${data.isi.substring(0, 100)}...</p>
-        <small>${data.tanggal || ""}</small>
-      </div>
-    `;
-  });
+  if (!data) {
+    ceritaContainer.innerHTML = "<p>Belum ada cerita ditambahkan.</p>";
+    return;
+  }
+
+  // Jika hanya 1 cerita
+  if (data.Judul) {
+    tampilkanCeritaCard(data);
+  } else {
+    // Jika banyak cerita (object dengan key)
+    Object.values(data).forEach(cerita => tampilkanCeritaCard(cerita));
+  }
+});
+
+// 🔹 Fungsi menampilkan card
+function tampilkanCeritaCard(cerita) {
+  ceritaContainer.innerHTML += `
+    <div class="cerita-card">
+      <h3>${cerita.Judul}</h3>
+      <p>${cerita.Isi}</p>
+      <small>${cerita.Tanggal || ""}</small><br>
+      <img src="${cerita.Foto}" alt="foto cerita" style="width:100%;border-radius:10px;margin-top:8px;">
+    </div>
+  `;
 }
-tampilkanCerita();
-
-// simpan id ke localstorage dan pindah ke detail
-window.lihatDetail = function (id) {
-  localStorage.setItem("ceritaId", id);
-  window.location.href = "detail.html";
-};
-

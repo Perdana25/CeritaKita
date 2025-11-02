@@ -1,6 +1,6 @@
 // Import Firebase Realtime Database SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // 🔥 konfigurasi firebase
 const firebaseConfig = {

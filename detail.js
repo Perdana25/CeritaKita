@@ -1,7 +1,7 @@
+// detail.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// 🔥 konfigurasi firebase (sama dengan script.js)
 const firebaseConfig = {
   apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuYw0Hg",
   authDomain: "ceritakita-22.firebaseapp.com",
@@ -15,31 +15,37 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const ceritaId = localStorage.getItem("ceritaId");
-const ceritaDetail = document.getElementById("cerita-detail");
+const id = localStorage.getItem("ceritaId");
+const detailEl = document.getElementById("cerita-detail");
 
-async function tampilkanDetail() {
-  if (!ceritaId) {
-    ceritaDetail.innerHTML = "<p>Cerita tidak ditemukan.</p>";
+async function render() {
+  if (!id) { detailEl.innerHTML = "<p class='muted'>Tidak ada cerita yang dipilih.</p>"; return; }
+  // try node Cerita/<id>
+  const snap = await get(ref(db, `Cerita/${id}`));
+  if (snap.exists()) {
+    const data = snap.val();
+    show(data);
     return;
   }
-
-  const ceritaRef = ref(db, "Cerita/" + ceritaId);
-  const snapshot = await get(ceritaRef);
-
-  if (snapshot.exists()) {
-    const data = snapshot.val();
-    ceritaDetail.innerHTML = `
-      <div class="cerita-card">
-        <h2>${data.Judul}</h2>
-        <p>${data.Isi}</p>
-        <small>${data.Tanggal || ""}</small><br>
-        ${data.Foto ? `<img src="${data.Foto}" alt="Foto cerita" style="width:100%;border-radius:15px;margin-top:10px;">` : ""}
-      </div>
-    `;
-  } else {
-    ceritaDetail.innerHTML = "<p>Data cerita tidak ditemukan di database.</p>";
+  // fallback: if root Cerita is a single object (no id)
+  const root = await get(ref(db, "Cerita"));
+  if (root.exists() && root.val().Judul) {
+    show(root.val());
+    return;
   }
+  detailEl.innerHTML = "<p class='muted'>Data cerita tidak ditemukan.</p>";
 }
 
-tampilkanDetail();
+function show(data){
+  const foto = data.Foto ? `<img src="${data.Foto}" alt="foto" style="width:100%;border-radius:12px;margin-top:12px">` : "";
+  detailEl.innerHTML = `
+    <article class="cerita-card">
+      <h2>${data.Judul || "Untitled"}</h2>
+      <small class="muted">${data.Tanggal || ""}</small>
+      <p style="margin-top:12px;white-space:pre-line">${data.Isi || ""}</p>
+      ${foto}
+    </article>
+  `;
+}
+
+render();

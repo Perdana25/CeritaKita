@@ -276,4 +276,14 @@ header button:hover {
 .moment-item:nth-child(3) { transition-delay: 0.4s; }
 .moment-item:nth-child(4) { transition-delay: 0.5s; }
 
+/* Fade-in animation saat scroll */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

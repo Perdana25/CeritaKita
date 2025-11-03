@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail Cerita | Cerita Kita</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Detail Cerita — Cerita Kita</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>📖 Cerita Kita</h1>
-    <p>Kenangan yang selalu hidup selamanya</p>
+  <header class="mini-header">
+    <a class="back-link" href="cerita.html">← Kembali</a>
+    <h1>Detail Cerita</h1>
   </header>
 
-  <main class="detail-container">
-    <button onclick="window.location.href='index.html'" class="back-btn">⬅ Kembali</button>
-    <div id="cerita-detail"></div>
+  <main class="container detail-main">
+    <div id="cerita-detail" class="detail-area">
+      <p class="muted">Memuat cerita…</p>
+    </div>
   </main>
 
   <footer>
-    <p>© 2025 CeritaKita - dibuat dengan ❤️</p>
+    <p>Made with <span>love</span> — Cerita Kita</p>
   </footer>
 
   <script type="module" src="detail.js"></script>

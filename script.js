@@ -99,3 +99,16 @@ function animateNumber(finalValue) {
 }
 
 setTimeout(updateDaysTogether, 1000);
+
+// --- ✨ Scroll Animation Observer ---
+const fadeEls = document.querySelectorAll(".fade-in, section, .cerita-card, .moment-item");
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+fadeEls.forEach((el) => fadeObserver.observe(el));

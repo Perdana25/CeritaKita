@@ -1,27 +1,57 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cerita Kita</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Journey — Cerita Kita</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272889.png" />
 </head>
 <body>
-  <header>
-    <h1>📖 Cerita Kita</h1>
-    <p>Kenangan yang selalu hidup selamanya</p>
+  <header class="hero" id="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="fade-up">Our Journey</h1>
+      <p class="lead fade-up" style="--delay:0.12s">A story written by time, held together by love.</p>
+      <div class="hero-cta fade-up" style="--delay:0.24s">
+        <a href="cerita.html" class="btn">Baca Cerita Kami</a>
+      </div>
+    </div>
   </header>
 
-  <main id="cerita-container" class="cerita-list">
-    <p style="text-align:center;color:#666;">Memuat cerita...</p>
+  <main>
+    <section class="dedication container">
+      <div class="dedication-grid">
+        <div class="ded-text fade-left">
+          <h2>Untuk Kita</h2>
+          <p id="dedikasi-text">
+            This little corner of the web is built to hold our memories — quiet pages where the small things become forever.
+            A dedication to the laughter we have shared, the quiet moments, and the many adventures still ahead.
+          </p>
+          <div class="meta">
+            <div><strong>Mulai</strong><p>22 September 2024</p></div>
+            <div><strong>Durasi</strong><p id="relationship-days">loading…</p></div>
+          </div>
+        </div>
+        <div class="ded-photo fade-right" id="photoFrame">
+          <!-- placeholder; user will replace photo.jpg in repo -->
+          <img src="photo.jpg" alt="Our photo" id="hero-photo">
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-preview container">
+      <h2 class="section-title fade-up">Our Moments</h2>
+      <div id="timelinePreview" class="timeline-container fade-up" style="--delay:0.12s">
+        <!-- timeline items injected by JS (from Firebase or sample) -->
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 CeritaKita - dibuat dengan ❤️</p>
+    <p>Made with <span>love</span> — Cerita Kita</p>
   </footer>
 
-  <!-- Firebase SDK -->
-  <script type="module" src="script.js"></script>
+  <script type="module" src="index.js"></script>
 </body>
 </html>

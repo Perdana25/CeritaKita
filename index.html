@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -8,50 +8,47 @@
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272889.png" />
 </head>
 <body>
-  <header class="hero" id="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1 class="fade-up">Our Journey</h1>
-      <p class="lead fade-up" style="--delay:0.12s">A story written by time, held together by love.</p>
-      <div class="hero-cta fade-up" style="--delay:0.24s">
-        <a href="cerita.html" class="btn">Baca Cerita Kami</a>
-      </div>
+  <header id="hero" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <h1 class="hero-title">Our Journey</h1>
+      <p class="hero-sub">A story written by time, held together by love.</p>
+      <a href="#cerita-section" class="btn primary" id="btn-start">Baca Cerita Kami</a>
     </div>
   </header>
 
   <main>
-    <section class="dedication container">
-      <div class="dedication-grid">
-        <div class="ded-text fade-left">
-          <h2>Untuk Kita</h2>
-          <p id="dedikasi-text">
-            This little corner of the web is built to hold our memories — quiet pages where the small things become forever.
-            A dedication to the laughter we have shared, the quiet moments, and the many adventures still ahead.
-          </p>
-          <div class="meta">
-            <div><strong>Mulai</strong><p>22 September 2024</p></div>
-            <div><strong>Durasi</strong><p id="relationship-days">loading…</p></div>
-          </div>
+    <!-- DEDICATION -->
+    <section class="container dedication" id="dedication">
+      <div class="ded-left">
+        <h2>Untuk Kita</h2>
+        <p id="dedikasi-text">This corner of the web is dedicated to our small moments — laughter, quiet talks, and everything in between. A space where our memories are kept safe and warm.</p>
+        <div class="meta">
+          <div><strong>Start</strong><p>22 Sep 2024</p></div>
+          <div><strong>Duration</strong><p id="relationship-days">Loading…</p></div>
         </div>
-        <div class="ded-photo fade-right" id="photoFrame">
-          <!-- placeholder; user will replace photo.jpg in repo -->
-          <img src="photo.jpg" alt="Our photo" id="hero-photo">
-        </div>
+      </div>
+      <div class="ded-photo">
+        <!-- letakkan file photo.jpg di root untuk tampil; kalau tidak ada akan fallback -->
+        <img id="hero-photo" src="photo.jpg" alt="Our photo">
       </div>
     </section>
 
-    <section class="timeline-preview container">
-      <h2 class="section-title fade-up">Our Moments</h2>
-      <div id="timelinePreview" class="timeline-container fade-up" style="--delay:0.12s">
-        <!-- timeline items injected by JS (from Firebase or sample) -->
+    <!-- BACA CERITA KAMI -->
+    <section id="cerita-section" class="container cerita-section">
+      <h2 class="section-title">Baca Cerita Kami</h2>
+      <div id="cerita-list" class="cerita-grid">
+        <p class="muted">Memuat cerita…</p>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <p>Made with <span>love</span> — Cerita Kita</p>
-  </footer>
+    <!-- OUR MOMENT (timeline akan di-generate dari cerita) -->
+    <section id="moment-section" class="container moment-section">
+      <h2 class="section-title">Our Moment</h2>
+      <div id="timeline" class="timeline-container">
+        <!-- timeline item akan diinjeksi disini -->
+      </div>
+    </section>
 
-  <script type="module" src="index.js"></script>
-</body>
-</html>
+    <!-- TANGGAL JADIAN + REVEAL -->
+    <section id="reveal-section

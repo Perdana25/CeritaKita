@@ -56,6 +56,26 @@ header p {
   z-index: 1;
 }
 
+/* Tombol di header */
+header button {
+  background: linear-gradient(135deg, #ff6699, #b84dff);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 25px;
+  z-index: 2;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+header button:hover {
+  background: linear-gradient(135deg, #ff88aa, #c36fff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.25);
+}
 
 .hero-content h1 {
   font-size: 3rem;
@@ -255,4 +275,5 @@ header p {
 .moment-item:nth-child(2) { transition-delay: 0.3s; }
 .moment-item:nth-child(3) { transition-delay: 0.4s; }
 .moment-item:nth-child(4) { transition-delay: 0.5s; }
+
 

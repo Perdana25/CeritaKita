@@ -112,3 +112,15 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 fadeEls.forEach((el) => fadeObserver.observe(el));
+
+// Smooth scroll ke bagian cerita
+const scrollBtn = document.getElementById("scrollToStory");
+if (scrollBtn) {
+  scrollBtn.addEventListener("click", () => {
+    const storySection = document.getElementById("cerita-section");
+    if (storySection) {
+      storySection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
+

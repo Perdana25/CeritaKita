@@ -11,41 +11,29 @@ const firebaseConfig = {
   messagingSenderId: "952342930337",
   appId: "1:952342930337:web:bcdccbb012a5a4f4aa61e0"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const id = localStorage.getItem("ceritaId");
-const detailEl = document.getElementById("cerita-detail");
+const id = localStorage.getItem('ceritaId');
+const el = document.getElementById('cerita-detail');
 
-async function render() {
-  if (!id) { detailEl.innerHTML = "<p class='muted'>Tidak ada cerita yang dipilih.</p>"; return; }
-  // try node Cerita/<id>
+async function init(){
+  if(!id){ el.innerHTML = '<p class="muted">Tidak ada cerita dipilih.</p>'; return; }
   const snap = await get(ref(db, `Cerita/${id}`));
   if (snap.exists()) {
     const data = snap.val();
     show(data);
-    return;
+  } else {
+    // fallback to root single
+    const root = await get(ref(db, 'Cerita'));
+    if(root.exists() && root.val().Judul) show(root.val());
+    else el.innerHTML = '<p class="muted">Data tidak ditemukan.</p>';
   }
-  // fallback: if root Cerita is a single object (no id)
-  const root = await get(ref(db, "Cerita"));
-  if (root.exists() && root.val().Judul) {
-    show(root.val());
-    return;
-  }
-  detailEl.innerHTML = "<p class='muted'>Data cerita tidak ditemukan.</p>";
 }
-
-function show(data){
-  const foto = data.Foto ? `<img src="${data.Foto}" alt="foto" style="width:100%;border-radius:12px;margin-top:12px">` : "";
-  detailEl.innerHTML = `
-    <article class="cerita-card">
-      <h2>${data.Judul || "Untitled"}</h2>
-      <small class="muted">${data.Tanggal || ""}</small>
-      <p style="margin-top:12px;white-space:pre-line">${data.Isi || ""}</p>
-      ${foto}
-    </article>
-  `;
+function show(d){
+  const fotoHTML = d.Foto ? `<img src="${escape(d.Foto)}" alt="foto" style="width:100%;border-radius:12px;margin-top:12px">` : '';
+  el.innerHTML = `<article class="cerita-card"><h2>${escape(d.Judul)}</h2><small class="muted">${escape(d.Tanggal||'')}</small><p style="margin-top:12px;white-space:pre-line">${escape(d.Isi||'')}</p>${fotoHTML}</article>`;
 }
+init();
 
-render();
+function escape(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, (m)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }

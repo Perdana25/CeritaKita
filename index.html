@@ -1,76 +1,59 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Our Journey — Cerita Kita</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/272/272889.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cerita Kita 💞</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header id="hero" class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-inner">
-      <h1 class="hero-title">Our Journey</h1>
-      <p class="hero-sub">A story written by time, held together by love.</p>
-      <a href="#cerita-section" class="btn primary" id="btn-start">Baca Cerita Kami</a>
+  <header>
+    <div class="hero-content">
+      <h1>Cerita Kita</h1>
+      <p>Dedikasi cinta, perjalanan, dan kenangan yang abadi untuk kita berdua 💌</p>
+      <button id="scrollToStory">Baca Cerita Kami</button>
     </div>
   </header>
 
-  <main>
-    <!-- DEDICATION -->
-    <section class="container dedication" id="dedication">
-      <div class="ded-left">
-        <h2>Untuk Kita</h2>
-        <p id="dedikasi-text">This corner of the web is dedicated to our small moments — laughter, quiet talks, and everything in between. A space where our memories are kept safe and warm.</p>
-        <div class="meta">
-          <div><strong>Start</strong><p>22 Sep 2024</p></div>
-          <div><strong>Duration</strong><p id="relationship-days">Loading…</p></div>
-        </div>
-      </div>
-      <div class="ded-photo">
-        <!-- letakkan file photo.jpg di root untuk tampil; kalau tidak ada akan fallback -->
-        <img id="hero-photo" src="photo.jpg" alt="Our photo">
-      </div>
-    </section>
+  <section class="about-us">
+    <img src="images/couple.jpg" alt="Foto Kami">
+    <div class="about-text">
+      <h2>Our Journey</h2>
+      <p>Ini adalah kisah tentang dua hati yang bertemu, tumbuh bersama, dan menciptakan kenangan. Setiap cerita di sini adalah bagian kecil dari cinta yang semakin dalam setiap harinya.</p>
+    </div>
+  </section>
 
-    <!-- BACA CERITA KAMI -->
-    <section id="cerita-section" class="container cerita-section">
-      <h2 class="section-title">Baca Cerita Kami</h2>
-      <div id="cerita-list" class="cerita-grid">
-        <p class="muted">Memuat cerita…</p>
-      </div>
-    </section>
+  <section id="cerita-section">
+    <h2>Baca Cerita Kami 💕</h2>
+    <div id="cerita-container" class="timeline"></div>
+  </section>
 
-    <!-- OUR MOMENT (timeline akan di-generate dari cerita) -->
-    <section id="moment-section" class="container moment-section">
-      <h2 class="section-title">Our Moment</h2>
-      <div id="timeline" class="timeline-container">
-        <!-- timeline item akan diinjeksi disini -->
-      </div>
-    </section>
+  <section id="moment-section">
+    <h2>Our Moment</h2>
+    <div id="moment-timeline"></div>
+  </section>
 
-    <!-- TANGGAL JADIAN + REVEAL -->
-    <section id="reveal-section" class="container reveal-section">
-      <div class="reveal-box">
-        <h3>Our Anniversary</h3>
-        <p>Tanggal jadian: <strong>22 September 2024</strong></p>
-        <div class="reveal-counter">
-          <div class="time-piece"><span id="reveal-years">0</span><small>Years</small></div>
-          <div class="time-piece"><span id="reveal-months">0</span><small>Months</small></div>
-          <div class="time-piece"><span id="reveal-days">0</span><small>Days</small></div>
-          <div class="time-piece"><span id="reveal-hours">0</span><small>Hours</small></div>
-          <div class="time-piece"><span id="reveal-mins">0</span><small>Minutes</small></div>
-          <div class="time-piece"><span id="reveal-secs">0</span><small>Seconds</small></div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <section id="anniversary-section">
+    <div class="anniversary-card">
+      <h2>💍 22 November 2024 💍</h2>
+      <p class="duration-text">We've been together for <span id="daysTogether">0</span> days 💖</p>
+    </div>
+  </section>
 
   <footer>
-    <p>Made with <span>♥</span> — Cerita Kita</p>
+    <p>Made with ❤️ by Perdana for Someone Special</p>
   </footer>
 
-  <script type="module" src="main.js"></script>
+  <!-- Modal Detail Cerita -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <small id="modalDate"></small>
+      <p id="modalContent"></p>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
 </body>
 </html>

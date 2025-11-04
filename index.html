@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cerita Kita 💞</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="header-bg fade-in">
-     <div class="container">
+
+  <!-- HEADER -->
+  <header class="header-bg">
+    <div class="hero-content" data-aos="fade-up">
       <h1>Cerita Kita</h1>
       <p>Dedikasi cinta, perjalanan, dan kenangan yang abadi untuk kita berdua 💌</p>
-      <button id="scrollToStory">Baca Cerita Kami</button>
+      <button id="to-dedikasi">Selengkapnya…</button>
     </div>
+
+    <!-- subtle moving clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- background music (replace lagu.mp3 with your file) -->
+    <audio id="bg-music" src="lagu.mp3" loop></audio>
+    <button id="music-toggle" aria-label="Toggle music">🔇</button>
   </header>
 
- <section class="about-us fade-in">
-    <img src="images/couple.jpg" alt="Foto Kami">
+  <!-- ABOUT / Our Journey (Dedikasi) -->
+  <section id="dedikasi-section" class="about-us fade-in-section" data-aos="fade-right">
+    <img src="images/couple.jpg" alt="Kami" />
     <div class="about-text">
       <h2>Our Journey</h2>
-      <p>Ini adalah kisah tentang dua hati yang bertemu, tumbuh bersama, dan menciptakan kenangan. Setiap cerita di sini adalah bagian kecil dari cinta yang semakin dalam setiap harinya.</p>
+      <p>
+        Sebuah ruang kecil untuk menyimpan kenangan kita — dari pertemuan pertama, tawa, pelukan, hingga hari-hari sederhana yang selalu terasa istimewa.
+      </p>
+      <a class="journey-btn" id="to-cerita">Baca Cerita Kami 💕</a>
     </div>
   </section>
 
-  <section id="cerita-section" class="fade-in">
-    <h2>Baca Cerita Kami 💕</h2>
-    <div id="cerita-container" class="timeline"></div>
+  <!-- BACA CERITA KAMI (horizontal timeline/cards) -->
+  <section id="cerita-section" class="fade-in-section" data-aos="fade-up">
+    <h2 class="judul-klik" id="judul-cerita">📖 Baca Cerita Kami</h2>
+    <div class="timeline-horizontal" id="cerita-container" aria-live="polite">
+      <!-- cards injected here by script.js -->
+    </div>
   </section>
 
-  <section id="moment-section" class="fade-in">
+  <!-- OUR MOMENT timeline (horizontal) -->
+  <section id="moment-section" class="fade-in-section" data-aos="fade-up">
     <h2>Our Moment</h2>
-    <div id="moment-timeline"></div>
+    <div id="moment-timeline" class="moment-horizontal">
+      <!-- timeline points injected here -->
+    </div>
   </section>
 
-<section id="anniversary-section" class="fade-in">
+  <!-- ANNIVERSARY / DURATION -->
+  <section id="anniversary-section" class="fade-in-section" data-aos="zoom-in">
     <div class="anniversary-card">
-      <h2>💍 22 November 2024 💍</h2>
-      <p class="duration-text">We've been together for <span id="daysTogether">0</span> days 💖</p>
+      <h2>Kita bersama sejak 22 November 2024 💕</h2>
+      <p id="duration" class="duration-text">Menghitung waktu cinta...</p>
     </div>
   </section>
 
   <footer>
-    <p>Made with ❤️ by Dabull for my spesial moon Wibull </p>
+    <p>Made with ❤️ by Perdana for Someone Special</p>
   </footer>
 
-  <!-- Modal Detail Cerita -->
-  <div id="detailModal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <h3 id="modalTitle"></h3>
-      <small id="modalDate"></small>
-      <p id="modalContent"></p>
-    </div>
-  </div>
-
   <script type="module" src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 900, once: true }); </script>
 </body>
 </html>
-
-

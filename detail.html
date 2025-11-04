@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detail Cerita | Cerita Kita</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-bg" style="height:180px">
+    <div class="hero-content"><h1>Detail Cerita</h1><a href="daftar.html" class="btn-back">⬅ Kembali ke Daftar Cerita</a></div>
+  </header>
+
+  <main style="padding:28px;">
+    <article id="detail-wrap" style="max-width:900px;margin:0 auto"></article>
+  </main>
+
+  <footer style="padding:28px;text-align:center;color:#cbb">Made with ❤️</footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxsOubMJerDL1hXd63xHi58vV_GuY0Hg",
+      authDomain: "ceritakita-22.firebaseapp.com",
+      databaseURL: "https://ceritakita-22-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      projectId: "ceritakita-22",
+      storageBucket: "ceritakita-22.appspot.com",
+      messagingSenderId: "952342930337",
+      appId: "1:952342930337:web:bcdccbb012a5a4f4aa61e0"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const wrap = document.getElementById("detail-wrap");
+    if(!id){
+      wrap.innerHTML = "<p style='color:#f0b6d1'>ID cerita tidak ditemukan.</p>";
+    } else {
+      const nodeRef = ref(db, `Cerita/${id}`);
+      onValue(nodeRef, snap=>{
+        const val = snap.val();
+        if(!val){ wrap.innerHTML = "<p style='color:#f0b6d1'>Cerita tidak ditemukan.</p>"; return; }
+        wrap.innerHTML = `
+          <img src="${val.foto || 'images/couple.jpg'}" style="width:100%;max-height:480px;object-fit:cover;border-radius:12px;margin-bottom:16px" />
+          <h2 style="color:var(--accent1)">${val.judul || ''}</h2>
+          <p style="color:#d6c0d6">${val.tanggal || 'Tanggal tidak tersedia'}</p>
+          <div style="color:#e9d7ea;line-height:1.7;margin-top:12px">${(val.isi||'').replace(/\n/g,'<br>')}</div>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
